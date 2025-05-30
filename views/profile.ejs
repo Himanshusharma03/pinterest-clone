@@ -1,0 +1,75 @@
+<% include ./partials/header.ejs %>
+  <% include ./partials/nav.ejs %>
+    <!-- Container -->
+    <div class="flex flex-col min-h-screen w-full">
+
+      <!-- Profile Header -->
+      <header class="flex flex-col justify-center items-center gap-3 bg-gray-100 border-b p-4">
+        <form id="uploadform" hidden action="/fileupload" method="post" enctype="multipart/form-data">
+          <input type="file" name="image">
+        </form>
+        <div class="relative ">
+          <span id="uploadicon"
+            class="w-8 h-8 absolute bottom-0 right-0 rounded-full flex items-center justify-center bg-zinc-200 cursor-pointer">
+            <i class="text-zinc-800 ri-pencil-fill"></i>
+          </span>
+          <div>
+            <img src="/images/uploads/<%= user.profileImage %>" alt="Profile Picture"
+              class="w-28 h-28 rounded-full object-cover border-4 border-red-700" />
+          </div>
+        </div>
+        <div class="text-center">
+          <h1 class="text-2xl font-semibold">
+            <%= user.fullname %>
+          </h1>
+          <p class="text-gray-500 text-sm">@<%= user.username %>
+          </p>
+          <div class="my-4">
+            <a href="#"
+              class="bg-gray-300 text-gray-900 px-4 py-2 rounded-full font-semibold hover:bg-gray-400 text-sm">Edit</a>
+            <a href="/publish"
+              class="bg-red-700 text-white font-bold text-sm px-3 py-2 rounded-full hover:bg-red-800 transition cursor-pointer">Publish</a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Profile Nav -->
+      <nav class="flex justify-center gap-6 border-b py-2 mt-2 text-sm font-bold">
+        <a href="#"
+          class="relative pb-1 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-black after:bottom-0 after:left-0">Created</a>
+        <a href="#" class="text-gray-700 hover:text-black transition">Saved</a>
+      </nav>
+
+      <!-- Gallery -->
+      <main class="px-4 py-6 md:px-8 lg:px-12">
+        <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+          <% user.posts.forEach(function (post) { %>
+            <div
+              class="break-inside-avoid mb-4 rounded-2xl overflow-hidden shadow-md bg-white transition-transform hover:scale-[1.02] duration-200">
+              <a href="/images/uploads/<%= post.image %>">
+                <img src="/images/uploads/<%= post.image %>" alt="Post image"
+                  class="w-full rounded-t-2xl object-cover transition-transform duration-200 hover:scale-105" />
+              </a>
+              <div class="p-4 text-left">
+                <h5 class="text-sm font-semibold text-gray-800">
+                  <%= post.postText %>
+                </h5>
+              </div>
+            </div>
+            <% }) %>
+        </div>
+      </main>
+
+    </div>
+
+    <script>
+      document.querySelector("#uploadicon").addEventListener("click", function () {
+        document.querySelector("#uploadform input").click();
+      })
+
+      document.querySelector("#uploadform input").addEventListener("change", function () {
+        document.querySelector("#uploadform").submit();
+      })
+    </script>
+
+    <% include ./partials/footer.ejs %>

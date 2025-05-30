@@ -1,0 +1,44 @@
+<% include ./partials/header.ejs %>
+  <div class="flex items-center justify-center min-h-screen px-4 bg-cover bg-center"
+    style="background-image: url('../bg/pbg.jpg')">
+    <div class="w-full max-w-md p-6 sm:p-8 bg-white/10 backdrop-blur-sm rounded-3xl shadow-xl text-center">
+
+      <!-- Content Wrapper -->
+      <div class="w-full max-w-xs mx-auto">
+
+        <!-- Pinterest Logo -->
+        <img src="../images/pin logo.png" alt="pin logo" class="h-14 mb-4 mx-auto" />
+
+        <!-- Header -->
+        <p class="text-xl sm:text-2xl font-semibold text-white mb-5">Make account to see more</p>
+
+        <!-- Registration Form -->
+        <form action="/register" method="post" class="space-y-3">
+          <input type="email" name="email" placeholder="Email" autocomplete="email"
+            class="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-600 text-white" />
+          <input type="text" name="username" placeholder="Username" autocomplete="username"
+            class="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-600 text-white" />
+          <input type="text" name="fullname" placeholder="Fullname"
+            class="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-600 text-white" />
+          <input type="password" name="password" placeholder="Password" autocomplete="new-password"
+            class="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-600 text-white" />
+          <input type="submit" value="Register Account"
+            class="w-full py-3 mt-1 font-bold text-white rounded-full bg-red-600 hover:bg-red-700 transition" />
+        </form>
+
+
+        <!-- Footer -->
+        <footer class="mt-6 text-xs text-white">
+          <p>
+            By continuing, you agree to Pinterest's
+            <b class="text-gray-200">Terms of Service, Privacy policy.</b>
+          </p>
+          <hr class="my-3 border-gray-300" />
+          <a href="/" class="font-medium hover:underline">Already on Pinterest? Login</a>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+  <% include ./partials/footer.ejs %>
